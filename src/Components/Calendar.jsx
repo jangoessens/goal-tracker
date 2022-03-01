@@ -1,13 +1,25 @@
 import React from 'react'
+import Day from './Day';
+import '../styles/calendar.scss';
 
 class Calendar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {thing : props.thing}
+
     }
 
     render() {
-        return <h1>{this.state.thing} </h1>
+        return this.props.days ? (
+            <div className='calendar'>
+                {
+                    this.props.days.map((day, i) => {
+                        return <Day key={i} day={day} index={i} completeDay={this.props.completeDay} />
+                    })
+                }
+            </div>
+        ) : null;
     }
+
 }
 export default Calendar;
+

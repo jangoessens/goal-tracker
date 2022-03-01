@@ -1,0 +1,22 @@
+@use '../variables/colors.scss';
+
+.day {
+    background: var(--background-light);
+    border: 1px solid var(--background-dark);
+    border-radius: 5px;
+    padding:4px;
+    aspect-ratio: 1/1;
+    transition-duration: .25s;
+    transition-timing-function: ease-out;
+    transition-property:transform, filter, background-color;
+    cursor: pointer;
+
+    &:not(.complete):hover {
+        filter:brightness(0.7);
+        transform: scale(1.1);
+        z-index: 10;
+    }
+    &.complete {
+        background-color: colors.$positive;
+    }
+}
