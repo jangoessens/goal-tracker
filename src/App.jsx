@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.scss'
 import Calendar from './Components/Calendar';
+import Form from './Components/Form';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,21 +12,31 @@ class App extends React.Component {
       days: [],
     };
     this.completeDay  = this.completeDay.bind(this);
-
+    this.setAmountOfDays = this.setAmountOfDays.bind(this);
   }
   render() {
     return (
       <section className='app'>
+        <Form setAmountOfDays={this.setAmountOfDays}/>
         <Calendar days={this.state.days} completeDay={this.completeDay}/>
       </section>
     )
   }
   componentDidMount() {
+    this.updateDays();
+  }
+  updateDays = () => {
     this.setState({
       days : this.getDays(),
     })
   }
-
+  setAmountOfDays = (amount) => {
+    this.setState({
+      duration: amount,
+    }, () => {
+      this.updateDays()
+    })
+  }
   completeDay = (index) => {
     let day = {...this.state.days[index], complete:true};
     let days = this.state.days;

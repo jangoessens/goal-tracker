@@ -3,14 +3,18 @@ import React from 'react'
 class Form extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {date: new Date()};
   }
+
   render() {
     return (
       <section className='form'>
-          <h1> zooi</h1>
+          <input name='days' type="number" onChange={this.setDays}></input>
       </section>
     )
+  }
+  setDays = (event) => {
+    console.log(event.target.value);
+    this.props.setAmountOfDays(parseInt(event.target.value));
   }
 }
 
